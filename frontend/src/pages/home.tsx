@@ -3,7 +3,7 @@ import Header from "@/components/ui/header"
 import { Textarea } from "@/components/ui/textarea"
 
 
-export const HomePage = () => {
+const HomePage = () => {
     return (
         <div className="h-full ">
             <Header />
@@ -19,3 +19,5 @@ export const HomePage = () => {
         </div>
     )
 }
+
+export default HomePage;
