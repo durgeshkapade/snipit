@@ -1,7 +1,7 @@
 
 const Header = () => {
     return (
-        <header className='flex justify-between'>
+        <header className='flex justify-between h-10 p-3 px-6'>
             <h1>
                 Sniput
             </h1>
