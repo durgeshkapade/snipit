@@ -1,36 +1,25 @@
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Button } from "./components/ui/button"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HomePage } from "@/pages/home";
+import DisplayPage from "./pages/display";
+import HistoryPage from "./pages/history";
 
-function App() {
 
+
+const App = () => {
   return (
-    <div className='h-screen w-screen m-0 p-0 box-border flex items-center justify-center'>
+        <div className='h-screen w-screen m-0 p-0 box-border flex items-center justify-center'>
 
-      <Card className="w-xl ">
-        <CardHeader>
-          <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card Description</CardDescription>
-          <CardAction>Card Action</CardAction>
-        </CardHeader>
-        <CardContent>
-        <Button variant={"outline"}>
-          htfujy
-        </Button>
-        </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter>
-      </Card>
+          <Router>
+            <Routes>
+              <Route path="/" element={< HomePage/>} />
+              <Route path="/:id" element={<DisplayPage/>} />
+              <Route path="/history" element={< HistoryPage/>} />
+            </Routes>
 
-    </div>
+          </Router>
+
+
+        </div>
   )
 }
 
