@@ -14,7 +14,6 @@ app.get('/hello', (req: Request, res: Response) => {
 });
 
 app.use(cors({
-
       origin: "http://localhost:5173",  // Allow only your frontend origin
       credentials: true,  // Allow cookies, authentication headers
       methods: "GET,POST,PUT,DELETE,OPTIONS", // Define allowed HTTP methods
