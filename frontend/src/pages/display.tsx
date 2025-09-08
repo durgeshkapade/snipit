@@ -11,7 +11,7 @@ const DisplayPage = () => {
   const navigate = useNavigate();
   const apiHelpers = useApiHelpers();
 
-  const [isEdit, setEdit] = useState<boolean>(false);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
   const [content, setContent] = useState<string>("");
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const DisplayPage = () => {
             variant={"link"}
             disabled={isEdit}
             className="underline hover:text-blue-500"
-            onClick={() => setEdit(true)}
+            onClick={() => setIsEdit(true)}
           >
             Edit
           </Button>
@@ -57,11 +57,8 @@ const DisplayPage = () => {
         )}
       </div>
       {isEdit && (
-        <div
-          className="flex w-full h-fit justify-end px-6"
-          onClick={() => setEdit(false)}
-        >
-          <Button>Save Changes</Button>
+        <div className="flex w-full h-fit justify-end px-6">
+          <Button onClick={() => setIsEdit(false)}>Save Changes</Button>
         </div>
       )}
     </div>
