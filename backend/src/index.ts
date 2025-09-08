@@ -4,6 +4,7 @@ import { connectDB } from '@/config/db.js';
 import pasteRouter from './routes/paste.route.js';
 import cors from "cors"
 import configurations from './config/configurations.js';
+import logger from './config/logger.js';
 
 connectDB();
 const port = process.env.PORT;
@@ -21,7 +22,6 @@ app.use(express.json())
     ))
     .use('/api/', pasteRouter)
 
-
 app.listen(port, () =>
-    console.log(`Listening on ${port}`)
+    logger.info(`Listening on ${port}`)
 );

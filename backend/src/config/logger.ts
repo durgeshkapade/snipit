@@ -1,24 +1,23 @@
-import { format } from "path";
-import { createLogger, transports } from "winston"
+import { createLogger, format, transports } from "winston"
 
 const logger = createLogger({
   level: "info",
   transports: [
     new transports.Console({
       level: "debug",
-      silent: false,
+      format: format.combine(format.timestamp(), format.simple()),
     }),
     new transports.File({
       dirname: "logs",
       filename: "combined.log",
       level: "info",
-      silent: true,
+      format: format.combine(format.timestamp(), format.simple()),
     }),
     new transports.File({
       dirname: "logs",
       filename: "errors.log",
       level: "error",
-      silent: true,
+      format: format.combine(format.timestamp(), format.simple()),
     }),
   ],
 });

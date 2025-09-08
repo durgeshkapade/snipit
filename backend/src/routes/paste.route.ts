@@ -1,10 +1,11 @@
+import logger from "@/config/logger.js";
 import PasteController from "@/controllers/paste.controller.js";
 import PasteService from "@/services/paste.service.js";
-import { Router, type NextFunction, type Request, type Response } from "express"
+import { Router, type NextFunction, type Request, type Response } from "express";
 const router = Router();
 
 const pasteService = new PasteService()
-const pasteController = new PasteController(pasteService as PasteService)
+const pasteController = new PasteController(pasteService,logger)
 
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     return await pasteController.createPaste(req, res, next)
