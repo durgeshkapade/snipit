@@ -1,5 +1,5 @@
-import pasteModel from "../models/Paste.js"
-import type { PasteInterface } from "../types/index.js";
+import pasteModel from "@/models/Paste.js"
+import type { PasteInterface } from "@/types/index.js";
 
 class PasteService {
     async savePaste(pastedata: PasteInterface) {
