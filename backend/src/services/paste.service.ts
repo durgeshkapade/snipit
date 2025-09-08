@@ -8,6 +8,9 @@ class PasteService {
     async getPasteById(id: string) {
         return await pasteModel.findOne({ id });
     }
+    async deletePaste(id: string) {
+        return await pasteModel.deleteOne({ id })
+    }
 }
 
 export default PasteService;

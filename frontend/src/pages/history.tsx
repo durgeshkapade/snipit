@@ -1,8 +1,5 @@
-
 const HistoryPage = () => {
-  return (
-    <div>HistoryPage</div>
-  )
-}
+  return <div>HistoryPage</div>;
+};
 
-export default HistoryPage
+export default HistoryPage;
