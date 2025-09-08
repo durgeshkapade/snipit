@@ -1,9 +1,19 @@
 import { Link } from "react-router-dom";
 import { Button } from "./button";
+import { cn } from "@/lib/utils";
 
-const Header = () => {
+interface HeaderProps {
+  className?: string;
+}
+
+const Header = ({ className }: HeaderProps) => {
   return (
-    <header className="flex justify-between h-fit p-3 px-6 border shadow">
+    <header
+      className={cn(
+        "flex justify-between h-fit p-3 px-6 border shadow",
+        className,
+      )}
+    >
       <Link to={"/"}>
         <h1 className="text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r             from-purple-400             via-pink-500             to-red-500 transform transition-transform duration-300 ease-in-out group-hover:scale-105">
           Snipit
