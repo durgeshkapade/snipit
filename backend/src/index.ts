@@ -14,12 +14,7 @@ app.get('/hello', (req: Request, res: Response) => {
 });
 
 app.use(express.json())
-    .use(cors(
-        {
-            origin: [configurations.frontend_url!],
-            credentials: true
-        }
-    ))
+    .use(cors())
     .use('/api/', pasteRouter)
 
 app.listen(port, () =>
