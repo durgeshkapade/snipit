@@ -1,6 +1,6 @@
-import { uniqueIdGenerator } from "@/lib/utils.js";
-import type PasteService from "@/services/paste.service.js";
-import { createPasteSchema } from "@/validators.ts/paste.validators.js";
+import { uniqueIdGenerator } from "../lib/utils.js";
+import type PasteService from "../services/paste.service.js";
+import { createPasteSchema } from "../validators.ts/paste.validators.js";
 import type { NextFunction, Request, Response } from "express";
 import type { Logger } from "winston";
 

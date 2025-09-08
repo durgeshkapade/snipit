@@ -1,6 +1,6 @@
-import logger from "@/config/logger.js";
-import PasteController from "@/controllers/paste.controller.js";
-import PasteService from "@/services/paste.service.js";
+import logger from "../config/logger.js";
+import PasteController from "../controllers/paste.controller.js";
+import PasteService from "../services/paste.service.js";
 import { Router, type NextFunction, type Request, type Response } from "express";
 const router = Router();
 

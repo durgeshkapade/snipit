@@ -1,4 +1,4 @@
-import type { IPaste } from "@/types/index.js";
+import type { IPaste } from "../types/index.js";
 import mongoose, { Schema } from "mongoose";
 
 const pastSchema = new Schema<IPaste>({

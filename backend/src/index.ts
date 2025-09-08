@@ -1,6 +1,6 @@
 import express, { type Request, type Response } from 'express';
 const app = express();
-import { connectDB } from '@/config/db.js';
+import { connectDB } from './config/db.js';
 import pasteRouter from './routes/paste.route.js';
 import cors from "cors"
 import configurations from './config/configurations.js';
