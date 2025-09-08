@@ -10,11 +10,5 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-  },
-  build: {
-    rollupOptions: {
-      // force the HTML entry so absolute/path args don't confuse Rollup on Windows
-      input: path.resolve(__dirname, "index.html"),
-    },
-  },
+  }
 });
