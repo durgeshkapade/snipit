@@ -9,8 +9,7 @@ const HomePage = () => {
 
     const submitPaste = async () => {
         const value = userInputRef.current?.value || "";
-        console.log(value);
-        const response = await api.post('/', { paste: value });
+        const response = await api.post('/', { content: value });
         const data = response.data;
         console.log(data);
         
