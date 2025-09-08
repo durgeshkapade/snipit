@@ -5,6 +5,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+
     // File Layout
     // "rootDir": "./src",
     // "outDir": "./dist",
@@ -21,12 +22,14 @@
 
     // Other Outputs
     "sourceMap": true,
+    "outDir": "dist",
     "declaration": true,
     "declarationMap": true,
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
+    "noImplicitAny": true,
 
     // Style Options
     // "noImplicitReturns": true,
@@ -43,6 +46,8 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
-  }
+    "skipLibCheck": true
+  },
+  "include": ["./src/**/*"],
+   "exclude": ["node_modules", "dist"]
 }
