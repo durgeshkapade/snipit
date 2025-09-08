@@ -1,22 +1,11 @@
 import { Button } from "@/components/ui/button"
 import Header from "@/components/ui/header"
 import { Textarea } from "@/components/ui/textarea"
-import api from "@/lib/api"
+import api, { submitPaste } from "@/lib/api"
 import { useRef } from "react"
 
 const HomePage = () => {
     const userInputRef = useRef<HTMLTextAreaElement>(null);
-
-    const submitPaste = async () => {
-        const value = userInputRef.current?.value || "";
-        const response = await api.post('/', { content: value });
-        const data = response.data;
-        console.log(data);
-        
-        if(response.status == 200){
-            alert("submitted with id: "+ data.id)
-        }
-    }
 
     return (
         <div className="h-full ">
@@ -29,7 +18,9 @@ const HomePage = () => {
                 />
             </div>
             <div className="w-full h-fit flex justify-end px-5">
-                <Button onClick={submitPaste}>
+                <Button onClick={() => {
+                    submitPaste(userInputRef)
+                }}>
                     Paste
                 </Button>
             </div>

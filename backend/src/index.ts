@@ -5,7 +5,6 @@ import pasteRouter from './routes/paste.route.js';
 import cors from "cors"
 import configurations from './config/configurations.js';
 
-
 connectDB();
 const port = process.env.PORT;
 
