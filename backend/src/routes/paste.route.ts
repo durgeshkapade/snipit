@@ -15,4 +15,8 @@ router.get('/:id', async (req: Request, res: Response,next: NextFunction) => {
     return await pasteController.getPaste(req, res,next)
 });
 
+router.delete('/:id', async (req: Request, res: Response,next: NextFunction) => {
+    return await pasteController.deletePaste(req, res,next)
+});
+
 export default router;

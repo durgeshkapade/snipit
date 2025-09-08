@@ -7,8 +7,8 @@ import type { Logger } from "winston";
 
 class PasteController {
     constructor(
-        private readonly pasteService:PasteService,
-    ){}
+        private readonly pasteService: PasteService,
+    ) { }
 
     async createPaste(req: Request, res: Response, next: NextFunction) {
         try {
@@ -29,10 +29,21 @@ class PasteController {
         }
     }
 
-    async getPaste(req: Request, res: Response,next:NextFunction) {
+    async getPaste(req: Request, res: Response, next: NextFunction) {
         try {
             const id = req.params.id;
             const result = await this.pasteService.getPasteById(id!);
+            return res.json(result);
+        }
+        catch (error) {
+            return next(error)
+        }
+    }
+
+    async deletePaste(req: Request, res: Response, next: NextFunction) {
+        try {
+            const id = req.params.id;
+            const result = await this.pasteService.deletePaste(id!);
             return res.json(result);
         }
         catch (error) {
