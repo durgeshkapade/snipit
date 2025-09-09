@@ -18,7 +18,6 @@ export const useApiHelpers = () => {
       return false;
     }
   };
-
   const submitPaste = async (
     userInputRef: RefObject<HTMLTextAreaElement | null>,
   ) => {
