@@ -14,11 +14,14 @@ app.get('/hello', (req: Request, res: Response) => {
 });
 
 app.use(cors({
-      origin: "https://snipit-rho.vercel.app",  // Allow only your frontend origin
-      credentials: true,  // Allow cookies, authentication headers
-      methods: "GET,POST,PUT,DELETE,OPTIONS", // Define allowed HTTP methods
-      allowedHeaders: "Content-Type,Authorization", // Define allowed headers
-    
+    origin: [
+        "https://snipit-rho.vercel.app",
+        "https://snipit-nu.vercel.app"
+    ],
+    credentials: true,
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
+    allowedHeaders: "Content-Type,Authorization",
+
 }));
 
 app.use(express.json())
