@@ -9,10 +9,6 @@ import logger from '@/config/logger.js';
 connectDB();
 const port = process.env.PORT;
 
-app.get('/hello', (req: Request, res: Response) => {
-    res.send("Hello")
-});
-
 app.use(cors({
     origin: [
         "https://snipit-rho.vercel.app",
@@ -24,6 +20,10 @@ app.use(cors({
     allowedHeaders: "Content-Type,Authorization",
 
 }));
+
+app.get('/api', (req: Request, res: Response) => {
+    res.send("Hello")
+});
 
 app.use(express.json())
     .use('/api/', pasteRouter)
