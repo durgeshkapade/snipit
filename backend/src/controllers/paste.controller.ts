@@ -77,6 +77,21 @@ class PasteController {
             return next(error)
         }
     }
+
+    async updatePaste(req: Request, res: Response, next: NextFunction) {
+        const id = req.params.id;
+        const { content } = req.body;       
+        try {
+            const result = await this.pasteService.updatePaste(id!, content);
+            this.logger.info("Updating paste:", id)
+            return res.json(result);
+        }
+        catch (error) {
+            this.logger.error("Error updating paste", id, error)
+            return next(error)
+        }
+    }
+
 }
 
 export default PasteController;

@@ -11,6 +11,10 @@ class PasteService {
     async deletePaste(id: string) {
         return await pasteModel.deleteOne({ id })
     }
+
+    async updatePaste(id: string, content: string) {
+        return await pasteModel.findOneAndUpdate({ id }, { content }, { new: true });
+    }
 }
 
 export default PasteService;
