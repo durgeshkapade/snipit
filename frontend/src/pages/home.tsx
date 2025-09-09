@@ -12,7 +12,9 @@ const HomePage = () => {
   const apiHelpers = useApiHelpers();
   const handleSubmit = async () => {
     const id = await apiHelpers.submitPaste(userInputRef);
-    toast.success("Snippet pasted successfully!");
+    toast.success("Snippet pasted successfully!", {
+      position: "bottom-right",
+    });
 
     navigate("/" + id);
   };
