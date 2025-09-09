@@ -1,3 +1,4 @@
+import { DEFAULT_EXPIRY_DAYS } from "@/lib/constants.js";
 import { uniqueIdGenerator } from "@/lib/utils.js";
 import type PasteService from "@/services/paste.service.js";
 import { createPasteSchema } from "@/validators.ts/paste.validators.js";
@@ -12,24 +13,44 @@ class PasteController {
 
     async createPaste(req: Request, res: Response, next: NextFunction) {
         try {
-            const newExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000)
-            const validateBody = createPasteSchema.parse({ ...req.body, expiresAt: newExpiry });
-            const uniqueId = uniqueIdGenerator();
-            const pasteData = {
-                id: uniqueId,
-                content: validateBody.content,
-                expiresAt: newExpiry
-            }
-            const result = await this.pasteService.savePaste(pasteData)
-            this.logger.info("Creating paste with id:", uniqueId)
+            const newExpiry = new Date(
+                Date.now() +
+                (24 * 60 * 60 * 1000) * DEFAULT_EXPIRY_DAYS
+            );
+            const validatedBody = createPasteSchema.parse({ ...req.body, expiresAt: newExpiry });
 
-            return res.json(result);
-        }
-        catch (error) {
-            this.logger.error("Error Creating paste ", error)
-            return next(error)
+            let pasteId = uniqueIdGenerator();
+
+            const createAndSavePaste = async (id: string) => {
+                const pasteData = {
+                    id,
+                    content: validatedBody.content,
+                    expiresAt: newExpiry
+                };
+                return await this.pasteService.savePaste(pasteData);
+            };
+
+            try {
+                const result = await createAndSavePaste(pasteId);
+                this.logger.info(`Created paste with id: ${pasteId}`);
+                return res.json(result);
+            } catch (error: any) {
+                // Check for duplicate key error (MongoDB code 11000)
+                if (error?.errorResponse?.code === 11000) {
+                    pasteId = uniqueIdGenerator();
+                    const result = await createAndSavePaste(pasteId);
+                    this.logger.info(`Created paste with new id after conflict: ${pasteId}`);
+                    return res.json(result);
+                } else {
+                    throw new Error(error?.message || 'Unknown error while saving paste');
+                }
+            }
+        } catch (error) {
+            this.logger.error("Error creating paste:", error);
+            return next(error);
         }
     }
+
 
     async getPaste(req: Request, res: Response, next: NextFunction) {
         const id = req.params.id;
