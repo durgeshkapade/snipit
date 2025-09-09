@@ -34,12 +34,13 @@ const DisplayPage = () => {
         onClick: async () => {
           const data = await apiHelpers.deletePaste(id!);
           if (data) {
-            toast.success("Paste deleted");
+            toast.success("Paste deleted", {
+              position: "bottom-right",
+            });
             navigate("/");
           } else {
             toast.error("Failed to delete paste", {
-              style: { backgroundColor: "#ef4444", color: "#fff" },
-              duration: 2000,
+              position: "bottom-right",
             });
           }
         },
@@ -47,7 +48,9 @@ const DisplayPage = () => {
       cancel: {
         label: "Cancel",
         onClick: () => {
-          toast.info("Action cancelled");
+          toast.info("Action cancelled", {
+            position: "bottom-right",
+          });
         },
       },
     });
