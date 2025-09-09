@@ -30,6 +30,7 @@ const DisplayPage = () => {
 
   const handleDelete = async () => {
       toast("Are you sure you want to delete this paste?", {
+          position: "top-center",
           action: {
             label: "Delete",
             onClick: async () => {
@@ -45,7 +46,7 @@ const DisplayPage = () => {
                   style: { backgroundColor: "#ef4444", color: "#fff" },
                   duration: 2000,
                 });
-              }
+              } 
             },
           },
           cancel: {
