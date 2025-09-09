@@ -15,12 +15,18 @@ const DisplayPage = () => {
 
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [content, setContent] = useState<string>();
+  const [updatedContent, setUpdatedContent] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function loadData() {
       const data = await apiHelpers.getPaste(id!);
-      if (data) setContent(data.content);
+      if (data) {
+        setContent(data.content);
+        setUpdatedContent(data.content);
+      } else {
+        setContent(undefined);
+      }
       setLoading(false);
     }
     loadData();
@@ -56,6 +62,31 @@ const DisplayPage = () => {
     });
   };
 
+
+
+  const handleEditSave = async () => {
+
+    if (updatedContent === content) {
+      setIsEdit(false);
+      return;
+    }
+
+    const data = await apiHelpers.updatePaste(id!, updatedContent!);
+    if (data) {
+      toast.success("Paste updated Successfully ✔️");
+      setContent(updatedContent);
+    } else {
+      toast.error("Failed to update paste", {
+        style: { backgroundColor: "#ef4444", color: "#fff" },
+        duration: 2000,
+      });
+    }
+
+    setIsEdit(false)
+  };
+
+
+
   return (
     <div className="h-full">
       <Header className="h-[10%]" />
@@ -87,7 +118,7 @@ const DisplayPage = () => {
           </div>
           <div className="w-screen h-[75%] px-6 py-2 overflow-x-hidden">
             {isEdit ? (
-              <Textarea className="h-full" />
+              <Textarea className="h-full" value={updatedContent} onChange={(e) => setUpdatedContent(e.target.value)} />
             ) : (
               <Card className="h-full overflow-y-scroll">
                 <CardContent className="h-fit">{content}</CardContent>
@@ -96,7 +127,7 @@ const DisplayPage = () => {
           </div>
           {isEdit && (
             <div className="flex w-full h-fit justify-end px-6">
-              <Button onClick={() => setIsEdit(false)}>Save Changes</Button>
+              <Button onClick={handleEditSave}>Save Changes</Button>
             </div>
           )}
         </>
