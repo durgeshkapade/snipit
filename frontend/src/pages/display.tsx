@@ -26,39 +26,32 @@ const DisplayPage = () => {
     loadData();
   }, []);
 
-
-
   const handleDelete = async () => {
-      toast("Are you sure you want to delete this paste?", {
-          position: "top-center",
-          action: {
-            label: "Delete",
-            onClick: async () => {
-              const data = await apiHelpers.deletePaste(id!);
-              if (data) {
-                toast.success("Paste deleted", {
-                  style: { backgroundColor: "#22c55e", color: "#fff" },
-                  duration: 2000,
-                });
-                navigate("/");
-              } else {
-                toast.error("Failed to delete paste", {
-                  style: { backgroundColor: "#ef4444", color: "#fff" },
-                  duration: 2000,
-                });
-              } 
-            },
-          },
-          cancel: {
-            label: "Cancel",
-            onClick: () => {
-              toast.info("Action cancelled")
-            },
-          },
-      })
+    toast("Are you sure you want to delete this paste?", {
+      position: "top-center",
+      action: {
+        label: "Delete",
+        onClick: async () => {
+          const data = await apiHelpers.deletePaste(id!);
+          if (data) {
+            toast.success("Paste deleted");
+            navigate("/");
+          } else {
+            toast.error("Failed to delete paste", {
+              style: { backgroundColor: "#ef4444", color: "#fff" },
+              duration: 2000,
+            });
+          }
+        },
+      },
+      cancel: {
+        label: "Cancel",
+        onClick: () => {
+          toast.info("Action cancelled");
+        },
+      },
+    });
   };
-
-
 
   return (
     <div className="h-full">
