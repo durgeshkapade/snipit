@@ -2,8 +2,7 @@ import express, { type Request, type Response } from 'express';
 const app = express();
 import { connectDB } from '@/config/db.js';
 import pasteRouter from '@/routes/paste.route.js';
-import cors from "cors"
-import configurations from '@/config/configurations.js';
+import cors from "cors";
 import logger from '@/config/logger.js';
 
 connectDB();
@@ -13,7 +12,7 @@ app.use(cors({
     origin: [
         "https://snipit-rho.vercel.app",
         "https://snipit-nu.vercel.app",
-        "http://localhost:5173",
+        "http://localhost:5173"
     ],
     credentials: true,
     methods: "GET,POST,PUT,DELETE,OPTIONS",
