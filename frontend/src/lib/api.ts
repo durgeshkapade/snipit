@@ -10,6 +10,14 @@ const api = axios.create({
 });
 
 export const useApiHelpers = () => {
+  const getServerStatus = async () => {
+    try {
+      const response = await api.get("/");
+      return response.status == 200;
+    } catch {
+      return false;
+    }
+  };
   const submitPaste = async (
     userInputRef: RefObject<HTMLTextAreaElement | null>,
   ) => {
@@ -32,6 +40,7 @@ export const useApiHelpers = () => {
   };
 
   return {
+    getServerStatus,
     submitPaste,
     getPaste,
     deletePaste,
