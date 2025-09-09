@@ -31,6 +31,8 @@ const DisplayPage = () => {
     loadData();
   }, []);
 
+
+
   const handleDelete = async () => {
     toast("Are you sure you want to delete this paste?", {
       position: "top-center",
@@ -80,6 +82,8 @@ const DisplayPage = () => {
 
     setIsEdit(false);
   };
+
+
 
   return (
     <div className="h-fit max-h-screen">
