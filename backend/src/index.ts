@@ -16,7 +16,8 @@ app.get('/hello', (req: Request, res: Response) => {
 app.use(cors({
     origin: [
         "https://snipit-rho.vercel.app",
-        "https://snipit-nu.vercel.app"
+        "https://snipit-nu.vercel.app",
+        "http://localhost:5173",
     ],
     credentials: true,
     methods: "GET,POST,PUT,DELETE,OPTIONS",
