@@ -12,8 +12,14 @@ const App = () => {
   useEffect(() => {
     async function checkStatus() {
       const isAlive = await apiHelpers.getServerStatus();
-      if (isAlive) toast.success("Server Connected");
-      else toast.error("Server Failure");
+      if (isAlive)
+        toast.success("Server Connected", {
+          position: "bottom-right",
+        });
+      else
+        toast.error("Server Failure", {
+          position: "bottom-right",
+        });
     }
     if (!hasRun.current) {
       checkStatus();

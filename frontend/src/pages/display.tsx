@@ -62,10 +62,7 @@ const DisplayPage = () => {
     });
   };
 
-
-
   const handleEditSave = async () => {
-
     if (updatedContent === content) {
       setIsEdit(false);
       return;
@@ -82,10 +79,8 @@ const DisplayPage = () => {
       });
     }
 
-    setIsEdit(false)
+    setIsEdit(false);
   };
-
-
 
   return (
     <div className="h-full">
@@ -118,7 +113,11 @@ const DisplayPage = () => {
           </div>
           <div className="w-screen h-[75%] px-6 py-2 overflow-x-hidden">
             {isEdit ? (
-              <Textarea className="h-full" value={updatedContent} onChange={(e) => setUpdatedContent(e.target.value)} />
+              <Textarea
+                className="h-full"
+                value={updatedContent}
+                onChange={(e) => setUpdatedContent(e.target.value)}
+              />
             ) : (
               <Card className="h-full overflow-y-scroll">
                 <CardContent className="h-fit">{content}</CardContent>

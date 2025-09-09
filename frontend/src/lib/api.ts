@@ -10,7 +10,6 @@ const api = axios.create({
 });
 
 export const useApiHelpers = () => {
-
   const getServerStatus = async () => {
     try {
       const response = await api.get("/");
@@ -20,7 +19,6 @@ export const useApiHelpers = () => {
     }
   };
 
-
   const submitPaste = async (
     userInputRef: RefObject<HTMLTextAreaElement | null>,
   ) => {
@@ -29,7 +27,6 @@ export const useApiHelpers = () => {
     const data = response.data;
     return data.id;
   };
-
 
   const getPaste = async (id: string) => {
     const response = await api.get("/" + id);
@@ -47,7 +44,7 @@ export const useApiHelpers = () => {
     const response = await api.put("/" + id, { content });
     const data = response.data;
     return data;
-  }
+  };
 
   return {
     getServerStatus,
