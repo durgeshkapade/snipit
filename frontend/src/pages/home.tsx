@@ -4,7 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useApiHelpers } from "@/lib/api";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner"
+import { toast } from "sonner";
 
 const HomePage = () => {
   const userInputRef = useRef<HTMLTextAreaElement>(null);
@@ -12,9 +12,8 @@ const HomePage = () => {
   const apiHelpers = useApiHelpers();
   const handleSubmit = async () => {
     const id = await apiHelpers.submitPaste(userInputRef);
-    toast.success("Snippet pasted successfully! "  , {
-      style: { backgroundColor: "#22c55e", color: "#fff" },
-      duration: 2000,
+    toast.success("Snippet pasted successfully!", {
+      position: "bottom-right",
     });
 
     navigate("/" + id);

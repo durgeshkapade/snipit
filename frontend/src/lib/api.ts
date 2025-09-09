@@ -18,6 +18,7 @@ export const useApiHelpers = () => {
       return false;
     }
   };
+
   const submitPaste = async (
     userInputRef: RefObject<HTMLTextAreaElement | null>,
   ) => {
@@ -39,11 +40,18 @@ export const useApiHelpers = () => {
     return data;
   };
 
+  const updatePaste = async (id: string, content: string) => {
+    const response = await api.put("/" + id, { content });
+    const data = response.data;
+    return data;
+  };
+
   return {
     getServerStatus,
     submitPaste,
     getPaste,
     deletePaste,
+    updatePaste,
   };
 };
 
