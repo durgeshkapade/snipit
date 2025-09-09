@@ -6,6 +6,7 @@ import { useApiHelpers } from "@/lib/api";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Error from "./error";
+import { toast } from "sonner";
 
 const DisplayPage = () => {
   const { id } = useParams();
@@ -25,10 +26,39 @@ const DisplayPage = () => {
     loadData();
   }, []);
 
+
+
   const handleDelete = async () => {
-    const data = await apiHelpers.deletePaste(id!);
-    if (data) navigate("/");
+      toast("Are you sure you want to delete this paste?", {
+          position: "top-center",
+          action: {
+            label: "Delete",
+            onClick: async () => {
+              const data = await apiHelpers.deletePaste(id!);
+              if (data) {
+                toast.success("Paste deleted", {
+                  style: { backgroundColor: "#22c55e", color: "#fff" },
+                  duration: 2000,
+                });
+                navigate("/");
+              } else {
+                toast.error("Failed to delete paste", {
+                  style: { backgroundColor: "#ef4444", color: "#fff" },
+                  duration: 2000,
+                });
+              } 
+            },
+          },
+          cancel: {
+            label: "Cancel",
+            onClick: () => {
+              toast.info("Action cancelled")
+            },
+          },
+      })
   };
+
+
 
   return (
     <div className="h-full">
