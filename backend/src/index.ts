@@ -14,13 +14,6 @@ app.get('/hello', (req: Request, res: Response) => {
 });
 
 app.use(cors({
-<<<<<<< HEAD
-      origin: configurations.frontend_url,  // Allow only your frontend origin
-      credentials: true,  // Allow cookies, authentication headers
-      methods: "GET,POST,PUT,DELETE,OPTIONS", // Define allowed HTTP methods
-      allowedHeaders: "Content-Type,Authorization", // Define allowed headers
-    
-=======
     origin: [
         "https://snipit-rho.vercel.app",
         "https://snipit-nu.vercel.app"
@@ -29,7 +22,6 @@ app.use(cors({
     methods: "GET,POST,PUT,DELETE,OPTIONS",
     allowedHeaders: "Content-Type,Authorization",
 
->>>>>>> de3f4ea5dfe52b3ac20a9f6a7a6fd679a998061d
 }));
 
 app.use(express.json())
