@@ -25,7 +25,7 @@ export const useApiHelpers = () => {
     const value = userInputRef.current?.value || "";
     const response = await api.post("/", { content: value });
     const data = response.data;
-    return data.id;
+    return data;
   };
 
   const getPaste = async (id: string) => {

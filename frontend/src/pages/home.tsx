@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useApiHelpers } from "@/lib/api";
+import { saveToLocal } from "@/lib/utils";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -10,12 +11,12 @@ const HomePage = () => {
   const navigate = useNavigate();
   const apiHelpers = useApiHelpers();
   const handleSubmit = async () => {
-    const id = await apiHelpers.submitPaste(userInputRef);
+    const data = await apiHelpers.submitPaste(userInputRef);
     toast.success("Snippet pasted successfully!", {
       position: "bottom-right",
     });
-
-    navigate("/" + id);
+    navigate("/" + data.id);
+    saveToLocal(data);
   };
 
   return (
