@@ -5,8 +5,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { useApiHelpers } from "@/lib/api";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Error from "./error";
+import Error from "@/components/error";
 import { toast } from "sonner";
+import QuoteLoader from "@/components/loader";
 
 const DisplayPage = () => {
   const { id } = useParams();
@@ -88,7 +89,7 @@ const DisplayPage = () => {
 
       {loading ? (
         <div className="flex items-center justify-center h-[90%]">
-          Loading... ⏳
+          <QuoteLoader />
         </div>
       ) : content ? (
         <>
