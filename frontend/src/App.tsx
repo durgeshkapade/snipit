@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "@/pages/home";
 import DisplayPage from "@/pages/display";
 import HistoryPage from "@/pages/history";
+import AboutPage from "./pages/about";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
 import { useApiHelpers } from "@/lib/api";
@@ -33,6 +34,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/:id" element={<DisplayPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/history" element={<HistoryPage />} />
         </Routes>
       </Router>
