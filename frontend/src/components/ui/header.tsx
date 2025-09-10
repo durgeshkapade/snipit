@@ -10,7 +10,7 @@ const Header = ({ className }: HeaderProps) => {
   return (
     <header
       className={cn(
-        "flex justify-between h-fit p-3 px-6 border shadow",
+        "flex justify-between h-fit p-3 px-6 border shadow bg-white",
         className,
       )}
     >
@@ -21,7 +21,7 @@ const Header = ({ className }: HeaderProps) => {
       </Link>
 
       <div className="flex gap-2">
-        <Link to={"/123"}>
+        <Link to={"/about"}>
           <Button variant={"ghost"}>About</Button>
         </Link>
         <Link to={"/history"}>
