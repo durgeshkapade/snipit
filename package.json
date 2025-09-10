@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
-  },
+    "prepare": "husky install",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\""  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -23,11 +25,12 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.35.0",
+    "concurrently": "^9.2.1",
     "eslint": "^9.35.0",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.3.0",
+    "husky": "^8.0.0",
     "jiti": "^2.5.1",
-    "typescript-eslint": "^8.42.0",
-    "husky": "^8.0.0"
+    "typescript-eslint": "^8.42.0"
   }
 }
