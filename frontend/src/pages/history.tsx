@@ -1,5 +1,9 @@
 const HistoryPage = () => {
-  return <div>HistoryPage</div>;
+  return (
+    <div className="h-fit">
+      <div className="h-[90vh]"></div>
+    </div>
+  );
 };
 
 export default HistoryPage;

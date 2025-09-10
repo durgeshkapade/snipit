@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import Header from "@/components/ui/header";
 import { Textarea } from "@/components/ui/textarea";
 import { useApiHelpers } from "@/lib/api";
 import { useEffect, useState } from "react";
@@ -83,11 +82,9 @@ const DisplayPage = () => {
   };
 
   return (
-    <div className="h-full">
-      <Header className="h-[10%]" />
-
+    <div className="h-fit max-h-screen">
       {loading ? (
-        <div className="flex items-center justify-center h-[90%]">
+        <div className="flex items-center justify-center h-[80vh]">
           Loading... ⏳
         </div>
       ) : content ? (
@@ -111,7 +108,7 @@ const DisplayPage = () => {
               </Button>
             </div>
           </div>
-          <div className="w-screen h-[75%] px-6 py-2 overflow-x-hidden">
+          <div className="w-screen h-[75vh] px-6 py-2 overflow-x-hidden">
             {isEdit ? (
               <Textarea
                 className="h-full"

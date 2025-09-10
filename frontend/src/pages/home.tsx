@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import Header from "@/components/ui/header";
 import { Textarea } from "@/components/ui/textarea";
 import { useApiHelpers } from "@/lib/api";
 import { useRef } from "react";
@@ -20,9 +19,8 @@ const HomePage = () => {
   };
 
   return (
-    <div className="h-full ">
-      <Header />
-      <div className="m-5 h-[75%]">
+    <div className="h-fit max-h-screen">
+      <div className="m-5 h-[70vh]">
         <Textarea
           ref={userInputRef}
           placeholder="Enter your snippet here..."
