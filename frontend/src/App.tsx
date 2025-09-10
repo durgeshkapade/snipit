@@ -4,7 +4,7 @@ import DisplayPage from "@/pages/display";
 import HistoryPage from "@/pages/history";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
-import { useApiHelpers } from "./lib/api";
+import { useApiHelpers } from "@/lib/api";
 
 const App = () => {
   const apiHelpers = useApiHelpers();
@@ -14,11 +14,11 @@ const App = () => {
       const isAlive = await apiHelpers.getServerStatus();
       if (isAlive)
         toast.success("Server Connected", {
-          position: "bottom-right",
+          position: "top-right",
         });
       else
         toast.error("Server Failure", {
-          position: "bottom-right",
+          position: "top-right",
         });
     }
     if (!hasRun.current) {
