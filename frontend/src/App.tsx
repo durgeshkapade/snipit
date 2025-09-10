@@ -5,6 +5,7 @@ import HistoryPage from "@/pages/history";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
 import { useApiHelpers } from "./lib/api";
+import Header from "@/components/ui/header";
 
 const App = () => {
   const apiHelpers = useApiHelpers();
@@ -28,15 +29,16 @@ const App = () => {
   }, []);
 
   return (
-    <div className="h-screen w-screen m-0 p-0 box-border">
-      <Router>
+    <Router>
+      <div className="h-screen w-screen m-0 p-0 box-border">
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/:id" element={<DisplayPage />} />
           <Route path="/history" element={<HistoryPage />} />
         </Routes>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 };
 
