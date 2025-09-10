@@ -13,7 +13,8 @@
   "lint-staged": {
     "src/**/*{js,html,css,ts,tsx}": [
       "npm run lint",
-      "npm run format"
+      "npm run format",
+      "cd frontend && npm run build"
     ]
   },
   "dependencies": {
