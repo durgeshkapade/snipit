@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Error from "@/components/error";
 import { toast } from "sonner";
-import QuoteLoader from "@/components/loader";
+import Loader from "@/components/loader";
 
 const DisplayPage = () => {
   const { id } = useParams();
@@ -83,10 +83,10 @@ const DisplayPage = () => {
   };
 
   return (
-    <div className="h-fit max-h-screen">
+    <div className="h-[90%]">
       {loading ? (
-        <div className="flex items-center justify-center h-[90%]">
-          <QuoteLoader />
+        <div className="flex justify-center items-center h-full">
+          <Loader />
         </div>
       ) : content ? (
         <>
