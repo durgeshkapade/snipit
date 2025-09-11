@@ -17,6 +17,10 @@ const pastSchema = new Schema<IPaste>({
     required: true,
     default: () => Date.now() + 24 * 60 * 60 * 1000,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 const pasteModel = mongoose.model<IPaste>("paste", pastSchema);
