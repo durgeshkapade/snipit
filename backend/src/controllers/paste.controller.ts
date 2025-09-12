@@ -1,5 +1,4 @@
-import { DEFAULT_EXPIRY_DAYS } from "@/lib/constants.js";
-import { uniqueIdGenerator } from "@/lib/utils.js";
+import { dateConverter, uniqueIdGenerator } from "@/lib/utils.js";
 import type PasteService from "@/services/paste.service.js";
 import { createPasteSchema } from "@/validators.ts/paste.validators.js";
 import type { NextFunction, Request, Response } from "express";
@@ -14,10 +13,12 @@ class PasteController {
   async createPaste(req: Request, res: Response, next: NextFunction) {
     try {
       const createdAt = new Date(Date.now());
-      const expiresAt = new Date(
-        Date.now() + 24 * 60 * 60 * 1000 * DEFAULT_EXPIRY_DAYS,
-      );
-      const validatedBody = createPasteSchema.parse({ ...req.body, expiresAt });
+      const { content, expiresTime } = req.body;
+
+      const expiresAt = expiresTime
+        ? dateConverter(expiresTime)
+        : dateConverter("1d");
+      const validatedBody = createPasteSchema.parse({ content, expiresAt });
 
       let pasteId = uniqueIdGenerator();
 
@@ -25,7 +26,7 @@ class PasteController {
         const pasteData = {
           id,
           content: validatedBody.content,
-          expiresAt,
+          expiresAt: validatedBody.expiresAt,
           createdAt,
         };
         return await this.pasteService.savePaste(pasteData);

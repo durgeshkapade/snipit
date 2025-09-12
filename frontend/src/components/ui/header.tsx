@@ -9,7 +9,8 @@ interface HeaderProps {
 }
 
 const Header = ({ className }: HeaderProps) => {
-  const id = useLocation().pathname;
+  const path = useLocation().pathname;
+  const id = path.includes("history") || path.includes("about") ? null : path;
   const [url, setUrl] = useState(window.location.href);
   const location = useLocation();
   const [showCopyTooltip, setShowCopyTooltip] = useState(false);
@@ -28,14 +29,20 @@ const Header = ({ className }: HeaderProps) => {
   return (
     <header
       className={cn(
-        "flex justify-between h-fit p-3 px-6 border shadow bg-white",
+        "flex justify-between h-fit p-4 px-6 border shadow bg-white",
         className,
       )}
     >
-      <h1 className="text-3xl font-bold tracking-tight bg-clip-text transform transition-transform duration-300 ease-in-out group-hover:scale-105">
-        {id.length > 1 ? (
+      <div className="flex items-center h-fit gap-6 w-fit">
+        <Link
+          to={"/"}
+          className="text-3xl font-bold tracking-tight bg-clip-text transform transition-transform duration-300 ease-in-out group-hover:scale-105"
+        >
+          Snipit
+        </Link>
+        {id && id.length > 1 && (
           <span className="flex items-center h-fit gap-2">
-            <Link to={"/"}>{url}</Link>
+            <p>{url}</p>
             <ClipboardCopy
               onClick={handleCopy}
               className="hover:cursor-pointer active:translate-y-0.5"
@@ -44,11 +51,8 @@ const Header = ({ className }: HeaderProps) => {
               <span className="font-normal text-lg">Copied!</span>
             )}
           </span>
-        ) : (
-          <>Snipit</>
         )}
-      </h1>
-
+      </div>
       <div className="flex gap-2">
         <Link to={"/about"}>
           <Button variant={"ghost"}>About</Button>
@@ -56,6 +60,11 @@ const Header = ({ className }: HeaderProps) => {
         <Link to={"/history"}>
           <Button variant={"ghost"}>History</Button>
         </Link>
+        {path.length > 1 && (
+          <Link to={"/"}>
+            <Button variant={"outline"}>New Snippet</Button>
+          </Link>
+        )}
       </div>
     </header>
   );

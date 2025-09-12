@@ -21,9 +21,10 @@ export const useApiHelpers = () => {
 
   const submitPaste = async (
     userInputRef: RefObject<HTMLTextAreaElement | null>,
+    expiresTime: string,
   ) => {
     const value = userInputRef.current?.value || "";
-    const response = await api.post("/", { content: value });
+    const response = await api.post("/", { content: value, expiresTime });
     const data = response.data;
     console.log(data);
     return data;
