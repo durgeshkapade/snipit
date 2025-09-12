@@ -12,12 +12,12 @@ export function saveToLocal(pasteData: PasteData) {
   const key = "items";
 
   const stored = localStorage.getItem(key);
-  const items = stored ? JSON.parse(stored) : [];
+  const items: Array<PasteData> = stored ? JSON.parse(stored) : [];
 
   const index = items.findIndex((item: PasteData) => item.id === id);
 
   if (index !== -1) items[index].content = content;
-  else items.push({ id, content, createdAt, expiresAt });
+  else items.unshift({ id, content, createdAt, expiresAt });
 
   localStorage.setItem(key, JSON.stringify(items));
 }
