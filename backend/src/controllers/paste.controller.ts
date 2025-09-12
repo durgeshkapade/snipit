@@ -13,7 +13,7 @@ class PasteController {
   async createPaste(req: Request, res: Response, next: NextFunction) {
     try {
       const createdAt = new Date(Date.now());
-      const { content, expiresTime } = req.bod;
+      const { content, expiresTime } = req.body;
 
       const expiresAt = expiresTime
         ? dateConverter(expiresTime)
