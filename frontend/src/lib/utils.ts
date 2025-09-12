@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function saveToLocal(pasteData: PasteData) {
-  const { id, content, createdAt } = pasteData;
+  const { id, content, createdAt, expiresAt }: PasteData = pasteData;
 
   const key = "items";
 
@@ -17,7 +17,7 @@ export function saveToLocal(pasteData: PasteData) {
   const index = items.findIndex((item: PasteData) => item.id === id);
 
   if (index !== -1) items[index].content = content;
-  else items.push({ id, content, createdAt });
+  else items.push({ id, content, createdAt, expiresAt });
 
   localStorage.setItem(key, JSON.stringify(items));
 }
