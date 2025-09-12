@@ -7,6 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Error from "@/components/error";
 import { toast } from "sonner";
 import Loader from "@/components/loader";
+import type { PasteData } from "@/types";
+import { getTimeRemaining } from "@/lib/utils";
 
 const DisplayPage = () => {
   const { id } = useParams();
@@ -14,7 +16,7 @@ const DisplayPage = () => {
   const apiHelpers = useApiHelpers();
 
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  const [content, setContent] = useState<string>();
+  const [paste, setPaste] = useState<PasteData>();
   const [updatedContent, setUpdatedContent] = useState<string>();
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -22,10 +24,10 @@ const DisplayPage = () => {
     async function loadData() {
       const data = await apiHelpers.getPaste(id!);
       if (data) {
-        setContent(data.content);
+        setPaste(data);
         setUpdatedContent(data.content);
       } else {
-        setContent(undefined);
+        setPaste(undefined);
       }
       setLoading(false);
     }
@@ -63,7 +65,7 @@ const DisplayPage = () => {
   };
 
   const handleEditSave = async () => {
-    if (updatedContent === content) {
+    if (updatedContent === paste?.content) {
       setIsEdit(false);
       return;
     }
@@ -71,7 +73,7 @@ const DisplayPage = () => {
     const data = await apiHelpers.updatePaste(id!, updatedContent!);
     if (data) {
       toast.success("Paste updated Successfully ✔️");
-      setContent(updatedContent);
+      setPaste(data);
     } else {
       toast.error("Failed to update paste", {
         style: { backgroundColor: "#ef4444", color: "#fff" },
@@ -88,10 +90,10 @@ const DisplayPage = () => {
         <div className="flex justify-center items-center h-full">
           <Loader />
         </div>
-      ) : content ? (
+      ) : paste?.content ? (
         <>
-          <div className="flex justify-between flex-col">
-            <div className="flex gap-3 px-2 py-3 ">
+          <div className="flex justify-between items-center w-fit gap-4">
+            <div className="flex  px-2 py-3 ">
               <Button
                 variant={"link"}
                 disabled={isEdit}
@@ -108,6 +110,7 @@ const DisplayPage = () => {
                 Delete
               </Button>
             </div>
+            <div>Expires in: {getTimeRemaining(paste.expiresAt)}</div>
           </div>
           <div className="w-screen h-[75vh] px-6 py-2 overflow-x-hidden">
             {isEdit ? (
@@ -118,7 +121,7 @@ const DisplayPage = () => {
               />
             ) : (
               <Card className="h-full overflow-y-scroll">
-                <CardContent className="h-fit">{content}</CardContent>
+                <CardContent className="h-fit">{paste.content}</CardContent>
               </Card>
             )}
           </div>

@@ -44,3 +44,46 @@ export const timeAgo = (timestamp: string): string => {
 
   return "Just now";
 };
+
+export function getTimeRemaining(isoString: string) {
+  const expiryDate = new Date(isoString);
+  const currentDate = new Date();
+
+  // Calculate the difference in milliseconds
+  const timeDifference = expiryDate.getTime() - currentDate.getTime();
+
+  // If the date has already passed, return an empty string or a message
+  if (timeDifference <= 0) {
+    return "Expired";
+  }
+
+  // Calculate time components
+  const seconds = Math.floor(timeDifference / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const months = Math.floor(days / 30.44); // Average number of days per month
+  const years = Math.floor(months / 12);
+
+  // Calculate the remainder for each unit
+  const remainingMonths = months % 12;
+  const remainingDays = Math.floor(days % 30.44);
+  const remainingHours = hours % 24;
+
+  // Build the output string
+  let result = "";
+  if (years > 0) {
+    result += `${years} year${years > 1 ? "s" : ""} `;
+  }
+  if (remainingMonths > 0) {
+    result += `${remainingMonths} month${remainingMonths > 1 ? "s" : ""} `;
+  }
+  if (remainingDays > 0) {
+    result += `${remainingDays} day${remainingDays > 1 ? "s" : ""} `;
+  }
+  if (remainingHours > 0) {
+    result += `${remainingHours} hour${remainingHours > 1 ? "s" : ""} `;
+  }
+
+  return result.trim();
+}
