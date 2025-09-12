@@ -12,12 +12,17 @@ const Header = ({ className }: HeaderProps) => {
   const id = useLocation().pathname;
   const [url, setUrl] = useState(window.location.href);
   const location = useLocation();
+  const [showCopyTooltip, setShowCopyTooltip] = useState(false);
   useEffect(() => {
     setUrl(window.location.href);
   }, [location]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(url);
+    setShowCopyTooltip(true);
+    setTimeout(() => {
+      setShowCopyTooltip(false);
+    }, 2000);
   };
 
   return (
@@ -35,6 +40,9 @@ const Header = ({ className }: HeaderProps) => {
               onClick={handleCopy}
               className="hover:cursor-pointer active:translate-y-0.5"
             />
+            {showCopyTooltip && (
+              <span className="font-normal text-lg">Copied!</span>
+            )}
           </span>
         ) : (
           <>Snipit</>
