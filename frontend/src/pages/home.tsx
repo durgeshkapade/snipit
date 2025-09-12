@@ -13,12 +13,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 
 const HomePage = () => {
   const userInputRef = useRef<HTMLTextAreaElement>(null);
   const [expiresTime, setExpiresTime] = useState("");
   const navigate = useNavigate();
   const apiHelpers = useApiHelpers();
+  const { t } = useTranslation();
 
   const handleSubmit = async () => {
     const data = await apiHelpers.submitPaste(userInputRef, expiresTime);
@@ -35,31 +37,43 @@ const HomePage = () => {
         <div className="">
           <Select onValueChange={setExpiresTime}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue className="" placeholder="Select Expire Time" />
+              <SelectValue
+                className=""
+                placeholder={t("home.select_expire_time")}
+              />
             </SelectTrigger>
 
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="1t">One Time Snippet</SelectItem>
-                <SelectItem value="1h">Expire In 1 Hour</SelectItem>
-                <SelectItem value="1d">Expire In 1 Day</SelectItem>
-                <SelectItem value="1w">Expire In 1 Week</SelectItem>
-                <SelectItem value="1m">Expire In 1 Month</SelectItem>
-                <SelectItem value="1y">Expire In 1 Year</SelectItem>
+                <SelectItem value="1h">
+                  {t("home.expire_options.expire_in_1_hour")}
+                </SelectItem>
+                <SelectItem value="1d">
+                  {t("home.expire_options.expire_in_1_day")}
+                </SelectItem>
+                <SelectItem value="1w">
+                  {t("home.expire_options.expire_in_1_week")}
+                </SelectItem>
+                <SelectItem value="1m">
+                  {t("home.expire_options.expire_in_1_month")}
+                </SelectItem>
+                <SelectItem value="1y">
+                  {t("home.expire_options.expire_in_1_year")}
+                </SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
         </div>
 
         <div className="w-full h-fit flex justify-end px-5">
-          <Button onClick={handleSubmit}>Paste</Button>
+          <Button onClick={handleSubmit}>{t("home.paste_button")}</Button>
         </div>
       </div>
 
       <div className="m-5 h-[70vh]">
         <Textarea
           ref={userInputRef}
-          placeholder="Enter your snippet here..."
+          placeholder={t("home.enter_snippet_placeholder")}
           className="h-full w-full mx-auto"
         />
       </div>

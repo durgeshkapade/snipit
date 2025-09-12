@@ -3,6 +3,15 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { ClipboardCopy } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface HeaderProps {
   className?: string;
@@ -14,9 +23,19 @@ const Header = ({ className }: HeaderProps) => {
   const [url, setUrl] = useState(window.location.href);
   const location = useLocation();
   const [showCopyTooltip, setShowCopyTooltip] = useState(false);
+  const { t, i18n } = useTranslation();
+  const [language, setLanguage] = useState(
+    localStorage.getItem("lang") || "en",
+  );
+
   useEffect(() => {
     setUrl(window.location.href);
   }, [location]);
+
+  useEffect(() => {
+    i18n.changeLanguage(language);
+    localStorage.setItem("lang", language);
+  }, [language, i18n]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(url);
@@ -48,21 +67,39 @@ const Header = ({ className }: HeaderProps) => {
               className="hover:cursor-pointer active:translate-y-0.5"
             />
             {showCopyTooltip && (
-              <span className="font-normal text-lg">Copied!</span>
+              <span className="font-normal text-lg">{t("header.copied")}</span>
             )}
           </span>
         )}
       </div>
       <div className="flex gap-2">
         <Link to={"/about"}>
-          <Button variant={"ghost"}>About</Button>
+          <Button variant={"ghost"}>{t("header.about")}</Button>
         </Link>
         <Link to={"/history"}>
-          <Button variant={"ghost"}>History</Button>
+          <Button variant={"ghost"}>{t("header.history")}</Button>
         </Link>
+        <Select onValueChange={setLanguage}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue className="" placeholder="Select Expire Time" />
+          </SelectTrigger>
+
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem defaultChecked value="en">
+                English
+              </SelectItem>
+              <SelectItem value="mr">Marathi</SelectItem>
+              <SelectItem value="hi">Hindi</SelectItem>
+              <SelectItem value="ja">Japanese</SelectItem>
+              <SelectItem value="de">German</SelectItem>
+              <SelectItem value="mr">Marathi</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
         {path.length > 1 && (
           <Link to={"/"}>
-            <Button variant={"outline"}>New Snippet</Button>
+            <Button variant={"outline"}>{t("header.newnippet")}</Button>
           </Link>
         )}
       </div>
