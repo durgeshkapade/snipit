@@ -1,4 +1,4 @@
-import cryptoRandomString from 'crypto-random-string';
+import cryptoRandomString from "crypto-random-string";
 export function uniqueIdGenerator(): string {
-    return cryptoRandomString({ length: 5})
+  return cryptoRandomString({ length: 5 });
 }

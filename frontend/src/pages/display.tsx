@@ -1,13 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import Header from "@/components/ui/header";
 import { Textarea } from "@/components/ui/textarea";
 import { useApiHelpers } from "@/lib/api";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Error from "@/components/error";
 import { toast } from "sonner";
-import QuoteLoader from "@/components/loader";
+import Loader from "@/components/loader";
 
 const DisplayPage = () => {
   const { id } = useParams();
@@ -84,12 +83,10 @@ const DisplayPage = () => {
   };
 
   return (
-    <div className="h-full">
-      <Header className="h-[10%]" />
-
+    <div className="h-[90%]">
       {loading ? (
-        <div className="flex items-center justify-center h-[90%]">
-          <QuoteLoader />
+        <div className="flex justify-center items-center h-full">
+          <Loader />
         </div>
       ) : content ? (
         <>
@@ -112,7 +109,7 @@ const DisplayPage = () => {
               </Button>
             </div>
           </div>
-          <div className="w-screen h-[75%] px-6 py-2 overflow-x-hidden">
+          <div className="w-screen h-[75vh] px-6 py-2 overflow-x-hidden">
             {isEdit ? (
               <Textarea
                 className="h-full"

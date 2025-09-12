@@ -1,1 +1,1 @@
-export const DEFAULT_EXPIRY_DAYS = 1
+export const DEFAULT_EXPIRY_DAYS = 1;

@@ -1,12 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import { ClipboardCopy } from "lucide-react";
 
 interface HeaderProps {
   className?: string;
 }
 
 const Header = ({ className }: HeaderProps) => {
+  const id = useLocation().pathname;
+  const [url, setUrl] = useState(window.location.href);
+  const location = useLocation();
+  const [showCopyTooltip, setShowCopyTooltip] = useState(false);
+  useEffect(() => {
+    setUrl(window.location.href);
+  }, [location]);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(url);
+    setShowCopyTooltip(true);
+    setTimeout(() => {
+      setShowCopyTooltip(false);
+    }, 2000);
+  };
+
   return (
     <header
       className={cn(
@@ -14,11 +32,22 @@ const Header = ({ className }: HeaderProps) => {
         className,
       )}
     >
-      <Link to={"/"}>
-        <h1 className="text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r             from-purple-400             via-pink-500             to-red-500 transform transition-transform duration-300 ease-in-out group-hover:scale-105">
-          Snipit
-        </h1>
-      </Link>
+      <h1 className="text-3xl font-bold tracking-tight bg-clip-text transform transition-transform duration-300 ease-in-out group-hover:scale-105">
+        {id.length > 1 ? (
+          <span className="flex items-center h-fit gap-2">
+            <Link to={"/"}>{url}</Link>
+            <ClipboardCopy
+              onClick={handleCopy}
+              className="hover:cursor-pointer active:translate-y-0.5"
+            />
+            {showCopyTooltip && (
+              <span className="font-normal text-lg">Copied!</span>
+            )}
+          </span>
+        ) : (
+          <>Snipit</>
+        )}
+      </h1>
 
       <div className="flex gap-2">
         <Link to={"/about"}>
