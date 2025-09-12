@@ -1,0 +1,31 @@
+{
+    "header": {
+        "about": "Über uns",
+        "history": "Verlauf",
+        "newnippet": "Neuer Snippet",
+        "copied": "Kopiert!"
+    },
+    "home": {
+        "select_expire_time": "Ablaufzeit auswählen",
+        "enter_snippet_placeholder": "Geben Sie Ihren Snippet hier ein...",
+        "paste_button": "Einfügen",
+        "expire_options": {
+            "one_time_snippet": "Einmaliger Snippet",
+            "expire_in_1_hour": "Läuft in 1 Stunde ab",
+            "expire_in_1_day": "Läuft in 1 Tag ab",
+            "expire_in_1_week": "Läuft in 1 Woche ab",
+            "expire_in_1_month": "Läuft in 1 Monat ab",
+            "expire_in_1_year": "Läuft in 1 Jahr ab"
+        }
+    },
+    "display": {
+        "expires_in": "Läuft ab in:",
+        "edit_button": "Bearbeiten",
+        "delete_button": "Löschen",
+        "save_button": "Änderungen speichern"
+    },
+    "history": {
+        "plain_text_snippet": "Klartext-Snippet",
+        "created_ago": "Erstellt"
+    }
+}

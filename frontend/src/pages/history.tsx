@@ -1,8 +1,10 @@
 import { timeAgo } from "@/lib/utils";
 import type { PasteData } from "@/types";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 const HistoryPage = () => {
+  const { t } = useTranslation();
   const stored = localStorage.getItem("items");
   const items: Array<PasteData> = stored ? JSON.parse(stored) : [];
 
@@ -14,9 +16,11 @@ const HistoryPage = () => {
             <div className="p-6">
               <div className="flex justify-between items-center text-gray-500 text-sm">
                 <Link className="text-blue-600 underline" to={"/" + item.id}>
-                  Plain Text Snippet
+                  {t("history.plain_text_snippet")}
                 </Link>
-                <span>Created {timeAgo(item.createdAt)}</span>
+                <span>
+                  {t("history.created_ago")} {timeAgo(item.createdAt)}
+                </span>
               </div>
               <hr className="my-4 border-gray-300" />
               <div className="text-gray-700 text-lg">

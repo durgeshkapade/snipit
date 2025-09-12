@@ -9,12 +9,13 @@ import { toast } from "sonner";
 import Loader from "@/components/loader";
 import type { PasteData } from "@/types";
 import { getTimeRemaining } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 const DisplayPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const apiHelpers = useApiHelpers();
-
+  const { t } = useTranslation();
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [paste, setPaste] = useState<PasteData>();
   const [updatedContent, setUpdatedContent] = useState<string>();
@@ -32,6 +33,7 @@ const DisplayPage = () => {
       setLoading(false);
     }
     loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleDelete = async () => {
@@ -100,17 +102,19 @@ const DisplayPage = () => {
                 className="underline hover:text-blue-500"
                 onClick={() => setIsEdit(true)}
               >
-                Edit
+                {t("display.edit_button")}
               </Button>
               <Button
                 variant={"link"}
                 className="underline hover:text-blue-500"
                 onClick={handleDelete}
               >
-                Delete
+                {t("display.delete_button")}
               </Button>
             </div>
-            <div>Expires in: {getTimeRemaining(paste.expiresAt)}</div>
+            <div>
+              {t("display.expires_in")} {getTimeRemaining(paste.expiresAt)}
+            </div>
           </div>
           <div className="w-screen h-[75vh] px-6 py-2 overflow-x-hidden">
             {isEdit ? (
@@ -127,7 +131,9 @@ const DisplayPage = () => {
           </div>
           {isEdit && (
             <div className="flex w-full h-fit justify-end px-6">
-              <Button onClick={handleEditSave}>Save Changes</Button>
+              <Button onClick={handleEditSave}>
+                {t("display.save_button")}
+              </Button>
             </div>
           )}
         </>

@@ -1,0 +1,31 @@
+{
+    "header": {
+        "about": "बद्दल",
+        "history": "इतिहास",
+        "newnippet": "नवीन स्निपेट",
+        "copied": "कॉपी केले!"
+    },
+    "home": {
+        "select_expire_time": "मुदतची वेळ निवडा",
+        "enter_snippet_placeholder": "तुमचा स्निपेट इथे लिहा...",
+        "paste_button": "पेस्ट करा",
+        "expire_options": {
+            "one_time_snippet": "एक वेळचा स्निपेट",
+            "expire_in_1_hour": "१ तासात मुदत संपेल",
+            "expire_in_1_day": "१ दिवसात मुदत संपेल",
+            "expire_in_1_week": "१ आठवड्यात मुदत संपेल",
+            "expire_in_1_month": "१ महिन्यात मुदत संपेल",
+            "expire_in_1_year": "१ वर्षात मुदत संपेल"
+        }
+    },
+    "display": {
+        "expires_in": "यामध्ये मुदत संपेल:",
+        "edit_button": "संपादित करा",
+        "delete_button": "हटवा",
+        "save_button": "बदल जतन करा"
+    },
+    "history": {
+        "plain_text_snippet": "साधा मजकूर स्निपेट",
+        "created_ago": "पूर्वी तयार केले"
+    }
+}
