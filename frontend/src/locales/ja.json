@@ -1,31 +1,31 @@
 {
-    "header": {
-        "about": "について",
-        "history": "履歴",
-        "newnippet": "新しいスニペット",
-        "copied": "コピーしました！"
-    },
-    "home": {
-        "select_expire_time": "有効期限を選択",
-        "enter_snippet_placeholder": "ここにスニペットを入力...",
-        "paste_button": "貼り付け",
-        "expire_options": {
-            "one_time_snippet": "一回限りのスニペット",
-            "expire_in_1_hour": "1時間で期限切れ",
-            "expire_in_1_day": "1日で期限切れ",
-            "expire_in_1_week": "1週間で期限切れ",
-            "expire_in_1_month": "1ヶ月で期限切れ",
-            "expire_in_1_year": "1年で期限切れ"
-        }
-    },
-    "display": {
-        "expires_in": "有効期限:",
-        "edit_button": "編集",
-        "delete_button": "削除",
-        "save_button": "変更を保存"
-    },
-    "history": {
-        "plain_text_snippet": "プレーンテキストのスニペット",
-        "created_ago": "作成"
+  "header": {
+    "about": "について",
+    "history": "履歴",
+    "newnippet": "新しいスニペット",
+    "copied": "コピーしました！"
+  },
+  "home": {
+    "select_expire_time": "有効期限を選択",
+    "enter_snippet_placeholder": "ここにスニペットを入力...",
+    "paste_button": "貼り付け",
+    "expire_options": {
+      "one_time_snippet": "一回限りのスニペット",
+      "expire_in_1_hour": "1時間で期限切れ",
+      "expire_in_1_day": "1日で期限切れ",
+      "expire_in_1_week": "1週間で期限切れ",
+      "expire_in_1_month": "1ヶ月で期限切れ",
+      "expire_in_1_year": "1年で期限切れ"
     }
+  },
+  "display": {
+    "expires_in": "有効期限:",
+    "edit_button": "編集",
+    "delete_button": "削除",
+    "save_button": "変更を保存"
+  },
+  "history": {
+    "plain_text_snippet": "プレーンテキストのスニペット",
+    "created_ago": "作成"
+  }
 }

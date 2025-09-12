@@ -1,31 +1,31 @@
 {
-    "header": {
-        "about": "हमारे बारे में",
-        "history": "इतिहास",
-        "newnippet": "नया स्निपेट",
-        "copied": "कॉपी किया गया!"
-    },
-    "home": {
-        "select_expire_time": "समाप्ति का समय चुनें",
-        "enter_snippet_placeholder": "अपना स्निपेट यहाँ दर्ज करें...",
-        "paste_button": "पेस्ट करें",
-        "expire_options": {
-            "one_time_snippet": "वन टाइम स्निपेट",
-            "expire_in_1_hour": "1 घंटे में समाप्त होगा",
-            "expire_in_1_day": "1 दिन में समाप्त होगा",
-            "expire_in_1_week": "1 सप्ताह में समाप्त होगा",
-            "expire_in_1_month": "1 महीने में समाप्त होगा",
-            "expire_in_1_year": "1 साल में समाप्त होगा"
-        }
-    },
-    "display": {
-        "expires_in": "समाप्त होगा:",
-        "edit_button": "संपादित करें",
-        "delete_button": "मिटाएँ",
-        "save_button": "परिवर्तन सहेजें"
-    },
-    "history": {
-        "plain_text_snippet": "सादा पाठ स्निपेट",
-        "created_ago": "बनाया गया"
+  "header": {
+    "about": "हमारे बारे में",
+    "history": "इतिहास",
+    "newnippet": "नया स्निपेट",
+    "copied": "कॉपी किया गया!"
+  },
+  "home": {
+    "select_expire_time": "समाप्ति का समय चुनें",
+    "enter_snippet_placeholder": "अपना स्निपेट यहाँ दर्ज करें...",
+    "paste_button": "पेस्ट करें",
+    "expire_options": {
+      "one_time_snippet": "वन टाइम स्निपेट",
+      "expire_in_1_hour": "1 घंटे में समाप्त होगा",
+      "expire_in_1_day": "1 दिन में समाप्त होगा",
+      "expire_in_1_week": "1 सप्ताह में समाप्त होगा",
+      "expire_in_1_month": "1 महीने में समाप्त होगा",
+      "expire_in_1_year": "1 साल में समाप्त होगा"
     }
+  },
+  "display": {
+    "expires_in": "समाप्त होगा:",
+    "edit_button": "संपादित करें",
+    "delete_button": "मिटाएँ",
+    "save_button": "परिवर्तन सहेजें"
+  },
+  "history": {
+    "plain_text_snippet": "सादा पाठ स्निपेट",
+    "created_ago": "बनाया गया"
+  }
 }
