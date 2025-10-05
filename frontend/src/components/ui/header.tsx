@@ -81,7 +81,7 @@ const Header = ({ className }: HeaderProps) => {
         </Link>
         <Select onValueChange={setLanguage}>
           <SelectTrigger className="w-[180px]">
-            <SelectValue className="" placeholder="Select Expire Time" />
+            <SelectValue className="" placeholder="Select Language" />
           </SelectTrigger>
 
           <SelectContent>
@@ -93,7 +93,6 @@ const Header = ({ className }: HeaderProps) => {
               <SelectItem value="hi">Hindi</SelectItem>
               <SelectItem value="ja">Japanese</SelectItem>
               <SelectItem value="de">German</SelectItem>
-              <SelectItem value="mr">Marathi</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
