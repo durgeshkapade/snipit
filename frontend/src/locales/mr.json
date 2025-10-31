@@ -9,6 +9,8 @@
     "select_expire_time": "मुदतची वेळ निवडा",
     "enter_snippet_placeholder": "तुमचा स्निपेट इथे लिहा...",
     "paste_button": "पेस्ट करा",
+    "paste_dynamic_id": "डायनामिक ID सह पेस्ट करा",
+    "paste_system_id": "सिस्टम ID सह पेस्ट करा",
     "expire_options": {
       "one_time_snippet": "एक वेळचा स्निपेट",
       "expire_in_1_hour": "१ तासात मुदत संपेल",

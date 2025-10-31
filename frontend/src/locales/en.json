@@ -9,6 +9,8 @@
     "select_expire_time": "Select Expire Time",
     "enter_snippet_placeholder": "Enter your snippet here...",
     "paste_button": "Paste",
+    "paste_dynamic_id": "Paste with Dynamic ID",
+    "paste_system_id": "Paste with System ID",
     "expire_options": {
       "one_time_snippet": "One Time Snippet",
       "expire_in_1_hour": "Expire In 1 Hour",

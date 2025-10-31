@@ -22,9 +22,16 @@ export const useApiHelpers = () => {
   const submitPaste = async (
     userInputRef: RefObject<HTMLTextAreaElement | null>,
     expiresTime: string,
+    idType?: "system" | "dynamic",
+    customId?: string,
   ) => {
     const value = userInputRef.current?.value || "";
-    const response = await api.post("/", { content: value, expiresTime });
+    const response = await api.post("/", {
+      content: value,
+      expiresTime,
+      idType,
+      customId,
+    });
     const data = response.data;
     console.log(data);
     return data;

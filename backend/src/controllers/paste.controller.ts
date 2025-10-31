@@ -13,14 +13,21 @@ class PasteController {
   async createPaste(req: Request, res: Response, next: NextFunction) {
     try {
       const createdAt = new Date(Date.now());
-      const { content, expiresTime } = req.body;
+      const { content, expiresTime, idType, customId } = req.body;
 
       const expiresAt = expiresTime
         ? dateConverter(expiresTime)
         : dateConverter("1d");
-      const validatedBody = createPasteSchema.parse({ content, expiresAt });
+      const validatedBody = createPasteSchema.parse({
+        content,
+        expiresAt,
+        idType,
+        customId,
+      });
 
-      let pasteId = uniqueIdGenerator();
+      let pasteId =
+        validatedBody.customId ||
+        (validatedBody.idType === "system" ? uniqueIdGenerator() : customId);
 
       const createAndSavePaste = async (id: string) => {
         const pasteData = {
@@ -38,7 +45,13 @@ class PasteController {
         return res.json(result);
       } catch (error: any) {
         if (error?.errorResponse?.code === 11000) {
-          pasteId = uniqueIdGenerator();
+          if (validatedBody.customId) {
+            return res.status(409).json({ error: "Custom ID already exists" });
+          }
+          pasteId =
+            validatedBody.idType === "system"
+              ? systemIdGenerator()
+              : uniqueIdGenerator();
           const result = await createAndSavePaste(pasteId);
           this.logger.info(
             `Created paste with new id after conflict: ${pasteId}`,

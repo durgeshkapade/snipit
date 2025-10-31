@@ -9,6 +9,8 @@
     "select_expire_time": "Ablaufzeit auswählen",
     "enter_snippet_placeholder": "Geben Sie Ihren Snippet hier ein...",
     "paste_button": "Einfügen",
+    "paste_dynamic_id": "Mit dynamischer ID einfügen",
+    "paste_system_id": "Mit System-ID einfügen",
     "expire_options": {
       "one_time_snippet": "Einmaliger Snippet",
       "expire_in_1_hour": "Läuft in 1 Stunde ab",
