@@ -12,8 +12,8 @@
   },
   "lint-staged": {
     "src/**/*{js,html,css,ts,tsx}": [
-      "npm run lint",
-      "npm run format"
+      "pnpm run lint",
+      "pnpm run format"
     ]
   },
   "dependencies": {
@@ -27,8 +27,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "i18next": "^25.5.2",
-    "i18next-browser-languagedetector": "^8.2.0",
-    "i18next-http-backend": "^3.0.2",
     "lucide-react": "^0.542.0",
     "next-themes": "^0.4.6",
     "prettier": "^3.6.2",
@@ -52,7 +50,6 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
     "lint-staged": "^16.1.6",
-    "tw-animate-css": "^1.3.8",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.42.0",
     "vite": "^7.1.2"
