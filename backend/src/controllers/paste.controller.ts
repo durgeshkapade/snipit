@@ -49,9 +49,7 @@ class PasteController {
             return res.status(409).json({ error: "Custom ID already exists" });
           }
           pasteId =
-            validatedBody.idType === "system"
-              ? systemIdGenerator()
-              : uniqueIdGenerator();
+            validatedBody.idType === "system" ? uniqueIdGenerator() : customId;
           const result = await createAndSavePaste(pasteId);
           this.logger.info(
             `Created paste with new id after conflict: ${pasteId}`,
