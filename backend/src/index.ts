@@ -2,6 +2,7 @@ import express, { type Request, type Response } from "express";
 const app = express();
 import { connectDB } from "@/config/db.js";
 import pasteRouter from "@/routes/paste.route.js";
+import healthRouter from "@/routes/health.route.js";
 import cors from "cors";
 import logger from "@/config/logger.js";
 
@@ -25,6 +26,6 @@ app.get("/api", (req: Request, res: Response) => {
   res.send("Hello");
 });
 
-app.use(express.json()).use("/api/", pasteRouter);
+app.use(express.json()).use("/api/", pasteRouter).use("/health/", healthRouter);
 
 app.listen(port, () => logger.info(`Listening on ${port}`));
