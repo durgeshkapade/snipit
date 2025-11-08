@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { ClipboardCopy } from "lucide-react";
+import { ClipboardCopy, Moon, Sun } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
   Select,
@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTheme } from "@/hooks/use-theme";
 
 interface HeaderProps {
   className?: string;
@@ -27,6 +28,7 @@ const Header = ({ className }: HeaderProps) => {
   const [language, setLanguage] = useState(
     localStorage.getItem("lang") || "en",
   );
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setUrl(window.location.href);
@@ -48,7 +50,7 @@ const Header = ({ className }: HeaderProps) => {
   return (
     <header
       className={cn(
-        "flex justify-between h-fit p-4 px-6 border shadow bg-white",
+        "flex justify-between h-fit p-4 px-6 border shadow bg-background",
         className,
       )}
     >
@@ -73,6 +75,14 @@ const Header = ({ className }: HeaderProps) => {
         )}
       </div>
       <div className="flex gap-2">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+        >
+          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        </Button>
         <Link to={"/about"}>
           <Button variant={"ghost"}>{t("header.about")}</Button>
         </Link>
