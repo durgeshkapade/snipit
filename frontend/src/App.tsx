@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { useEffect, useRef } from "react";
 import { useApiHelpers } from "./lib/api";
 import Header from "@/components/ui/header";
+import ThemeProvider from "@/lib/theme";
 
 const App = () => {
   const apiHelpers = useApiHelpers();
@@ -30,17 +31,19 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
-      <div className="h-screen w-screen m-0 p-0 box-border">
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/:id" element={<DisplayPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/history" element={<HistoryPage />} />
-        </Routes>
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <div className="h-screen w-screen m-0 p-0 box-border">
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/:id" element={<DisplayPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/history" element={<HistoryPage />} />
+          </Routes>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 };
 
