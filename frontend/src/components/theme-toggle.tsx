@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTheme } from "@/hooks/use-theme";
 import { ThemeToggleButton } from "@/components/ui/shadcn-io/theme-toggle-button";
 import { useThemeTransition } from "@/hooks/use-theme-transition";
@@ -17,8 +17,7 @@ const ThemeTogglePositionsDemo = () => {
       setTheme(newTheme);
     });
   }, [theme, setTheme, startTransition]);
-  const currentTheme =
-    theme === "system" ? "light" : (theme as "light" | "dark");
+  const currentTheme = theme;
   if (!mounted) {
     return null;
   }
