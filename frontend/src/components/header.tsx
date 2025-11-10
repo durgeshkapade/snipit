@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CopyButton } from "@/components/ui/shadcn-io/copy-button";
+import ThemeTogglePositionsDemo from "@/components/theme-toggle";
 
 interface HeaderProps {
   className?: string;
@@ -43,7 +44,7 @@ const Header = ({ className }: HeaderProps) => {
   return (
     <header
       className={cn(
-        "flex justify-between h-fit p-4 px-6 border shadow bg-white",
+        "flex justify-between h-fit p-4 px-6 border shadow bg-background",
         className,
       )}
     >
@@ -67,6 +68,7 @@ const Header = ({ className }: HeaderProps) => {
         )}
       </div>
       <div className="flex gap-2">
+        <ThemeTogglePositionsDemo />
         <Link to={"/about"}>
           <Button variant={"ghost"}>{t("header.about")}</Button>
         </Link>
