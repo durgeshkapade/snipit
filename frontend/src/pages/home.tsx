@@ -27,7 +27,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { ChevronDownIcon } from "lucide-react";
+import { ChevronDownIcon, Sparkles, Hash } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import type { IdType } from "@/types";
 
@@ -113,12 +113,38 @@ const HomePage = () => {
                 <ChevronDownIcon className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={handleDynamicIdClick}>
-                {t("home.paste_dynamic_id")}
+            <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuItem
+                onClick={handleDynamicIdClick}
+                className="cursor-pointer"
+              >
+                <div className="flex items-start gap-3">
+                  <Hash className="h-4 w-4 mt-0.5" />
+                  <div className="flex flex-col gap-0.5">
+                    <span className="font-medium">
+                      {t("home.paste_dynamic_id")}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      Choose your own ID
+                    </span>
+                  </div>
+                </div>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => handleSubmit("system")}>
-                {t("home.paste_system_id")}
+              <DropdownMenuItem
+                onClick={() => handleSubmit("system")}
+                className="cursor-pointer"
+              >
+                <div className="flex items-start gap-3">
+                  <Sparkles className="h-4 w-4 mt-0.5" />
+                  <div className="flex flex-col gap-0.5">
+                    <span className="font-medium">
+                      {t("home.paste_system_id")}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      Auto-generate ID
+                    </span>
+                  </div>
+                </div>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

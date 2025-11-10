@@ -1,13 +1,10 @@
 import Footer from "@/components/ui/footer";
-import Header from "@/components/header";
-import { Mail, Code, Users, Heart } from "lucide-react";
+import { Mail, Code, Users, Heart, Github } from "lucide-react";
 
 const AboutPage = () => {
   return (
-    <div className=" max-w-100vw  overflow-x-hidden">
-      <Header className="fixed top-0 left-0 right-0 z-50 " />
-
-      <div className=" overflow-x-hidden bg-gray-50 pb-[9%] pt-[9%] py-16 px-4">
+    <div className="max-w-100vw overflow-x-hidden">
+      <div className="overflow-x-hidden bg-muted/30 py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -100,10 +97,12 @@ const AboutPage = () => {
                           <Mail className="w-5 h-5" />
                         </a>
                         <a
-                          href="#"
+                          href="https://github.com/durgeshkapade"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="text-gray-500 hover:text-purple-600 transition-colors"
                         >
-                          {/* <Github className="w-5 h-5" /> */}
+                          <Github className="w-5 h-5" />
                         </a>
                       </div>
                     </div>
@@ -124,10 +123,12 @@ const AboutPage = () => {
                           <Mail className="w-5 h-5" />
                         </a>
                         <a
-                          href="#"
+                          href="https://github.com/tejaschaudhari131"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="text-gray-500 hover:text-purple-600 transition-colors"
                         >
-                          {/* <Github className="w-5 h-5" /> */}
+                          <Github className="w-5 h-5" />
                         </a>
                       </div>
                     </div>
@@ -147,12 +148,20 @@ const AboutPage = () => {
                 documentation improvements, every contribution matters.
               </p>
               <div className="flex justify-center space-x-4">
-                <button className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                  View on GitHub
-                </button>
-                <button className="bg-purple-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-400 transition-colors">
-                  Get in Touch
-                </button>
+                <a
+                  href="https://github.com/durgeshkapade/snipit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    View on GitHub
+                  </button>
+                </a>
+                <a href="mailto:durgeshkapade26@gmail.com">
+                  <button className="bg-purple-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-400 transition-colors">
+                    Get in Touch
+                  </button>
+                </a>
               </div>
             </div>
           </div>
