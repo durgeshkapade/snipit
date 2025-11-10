@@ -83,10 +83,10 @@ const Header = ({ className }: HeaderProps) => {
               <SelectItem defaultChecked value="en">
                 English
               </SelectItem>
-              <SelectItem value="mr">Marathi</SelectItem>
-              <SelectItem value="hi">Hindi</SelectItem>
-              <SelectItem value="ja">Japanese</SelectItem>
-              <SelectItem value="de">German</SelectItem>
+              <SelectItem value="mr">मराठी</SelectItem>
+              <SelectItem value="hi">हिन्दी</SelectItem>
+              <SelectItem value="ja">日本語</SelectItem>
+              <SelectItem value="de">Deutsch</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
