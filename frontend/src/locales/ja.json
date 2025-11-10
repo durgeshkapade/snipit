@@ -9,6 +9,8 @@
     "select_expire_time": "有効期限を選択",
     "enter_snippet_placeholder": "ここにスニペットを入力...",
     "paste_button": "貼り付け",
+    "paste_dynamic_id": "ダイナミックIDで貼り付け",
+    "paste_system_id": "システムIDで貼り付け",
     "expire_options": {
       "one_time_snippet": "一回限りのスニペット",
       "expire_in_1_hour": "1時間で期限切れ",

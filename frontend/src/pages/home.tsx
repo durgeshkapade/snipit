@@ -13,22 +13,59 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { ChevronDownIcon, Sparkles, Hash } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import type { IdType } from "@/types";
 
 const HomePage = () => {
   const userInputRef = useRef<HTMLTextAreaElement>(null);
   const [expiresTime, setExpiresTime] = useState("");
+  const [textValue, setTextValue] = useState("");
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [customId, setCustomId] = useState("");
   const navigate = useNavigate();
   const apiHelpers = useApiHelpers();
   const { t } = useTranslation();
 
-  const handleSubmit = async () => {
-    const data = await apiHelpers.submitPaste(userInputRef, expiresTime);
-    toast.success("Snippet pasted successfully!", {
+  const handleSubmit = async (selectedIdType: IdType, providedId?: string) => {
+    const data = await apiHelpers.submitPaste(
+      userInputRef,
+      expiresTime,
+      selectedIdType,
+      providedId,
+    );
+    toast.success(`Snippet pasted with ${selectedIdType} ID!`, {
       position: "bottom-right",
     });
     navigate("/" + data.id);
     saveToLocal(data);
+  };
+
+  const handleDynamicIdClick = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleDialogSubmit = () => {
+    if (customId.trim()) {
+      handleSubmit("dynamic", customId.trim());
+      setIsDialogOpen(false);
+      setCustomId("");
+    }
   };
 
   return (
@@ -66,13 +103,83 @@ const HomePage = () => {
         </div>
 
         <div className="w-full h-fit flex justify-end px-5">
-          <Button onClick={handleSubmit}>{t("home.paste_button")}</Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                disabled={!textValue.length}
+                className="flex items-center gap-2"
+              >
+                {t("home.paste_button")}
+                <ChevronDownIcon className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuItem
+                onClick={handleDynamicIdClick}
+                className="cursor-pointer"
+              >
+                <div className="flex items-start gap-3">
+                  <Hash className="h-4 w-4 mt-0.5" />
+                  <div className="flex flex-col gap-0.5">
+                    <span className="font-medium">
+                      {t("home.paste_dynamic_id")}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      Choose your own ID
+                    </span>
+                  </div>
+                </div>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => handleSubmit("system")}
+                className="cursor-pointer"
+              >
+                <div className="flex items-start gap-3">
+                  <Sparkles className="h-4 w-4 mt-0.5" />
+                  <div className="flex flex-col gap-0.5">
+                    <span className="font-medium">
+                      {t("home.paste_system_id")}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      Auto-generate ID
+                    </span>
+                  </div>
+                </div>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Enter Custom ID</DialogTitle>
+          </DialogHeader>
+          <div className="py-4">
+            <Input
+              placeholder="Enter your custom ID..."
+              value={customId}
+              onChange={(e) => setCustomId(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleDialogSubmit()}
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleDialogSubmit} disabled={!customId.trim()}>
+              Create Snippet
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <div className="m-5 h-[70vh]">
         <Textarea
           ref={userInputRef}
+          value={textValue}
+          onChange={(e) => setTextValue(e.target.value)}
           placeholder={t("home.enter_snippet_placeholder")}
           className="h-full w-full mx-auto"
         />

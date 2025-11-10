@@ -4,3 +4,5 @@ export interface PasteData {
   createdAt: string;
   expiresAt: string;
 }
+
+export type IdType = "system" | "dynamic";

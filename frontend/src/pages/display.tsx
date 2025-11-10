@@ -10,6 +10,7 @@ import Loader from "@/components/loader";
 import type { PasteData } from "@/types";
 import { getTimeRemaining } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
+import { Edit, Trash2, Save, X, Clock } from "lucide-react";
 
 const DisplayPage = () => {
   const { id } = useParams();
@@ -94,48 +95,73 @@ const DisplayPage = () => {
         </div>
       ) : paste?.content ? (
         <>
-          <div className="flex justify-between items-center w-fit gap-4">
-            <div className="flex  px-2 py-3 ">
-              <Button
-                variant={"link"}
-                disabled={isEdit}
-                className="underline hover:text-blue-500"
-                onClick={() => setIsEdit(true)}
-              >
-                {t("display.edit_button")}
-              </Button>
-              <Button
-                variant={"link"}
-                className="underline hover:text-blue-500"
-                onClick={handleDelete}
-              >
-                {t("display.delete_button")}
-              </Button>
+          <div className="flex justify-between items-center px-6 py-3 border-b">
+            <div className="flex gap-2">
+              {!isEdit ? (
+                <>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setIsEdit(true)}
+                    className="gap-2"
+                  >
+                    <Edit className="h-4 w-4" />
+                    {t("display.edit_button")}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleDelete}
+                    className="gap-2 text-destructive hover:text-destructive"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                    {t("display.delete_button")}
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    variant="default"
+                    size="sm"
+                    onClick={handleEditSave}
+                    className="gap-2"
+                  >
+                    <Save className="h-4 w-4" />
+                    {t("display.save_button")}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setIsEdit(false);
+                      setUpdatedContent(paste?.content);
+                    }}
+                    className="gap-2"
+                  >
+                    <X className="h-4 w-4" />
+                    Cancel
+                  </Button>
+                </>
+              )}
             </div>
-            <div>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Clock className="h-4 w-4" />
               {t("display.expires_in")} {getTimeRemaining(paste.expiresAt)}
             </div>
           </div>
-          <div className="w-screen h-[75vh] px-6 py-2 overflow-x-hidden">
+          <div className="w-screen h-[75vh] px-6 py-4 overflow-x-hidden">
             {isEdit ? (
               <Textarea
-                className="h-full"
+                className="h-full font-mono"
                 value={updatedContent}
                 onChange={(e) => setUpdatedContent(e.target.value)}
               />
             ) : (
-              <Card className="h-full overflow-y-scroll">
+              <Card className="h-full overflow-y-auto">
                 <CardContent className="h-fit">{paste.content}</CardContent>
               </Card>
             )}
           </div>
-          {isEdit && (
-            <div className="flex w-full h-fit justify-end px-6">
-              <Button onClick={handleEditSave}>
-                {t("display.save_button")}
-              </Button>
-            </div>
-          )}
         </>
       ) : (
         <Error />
