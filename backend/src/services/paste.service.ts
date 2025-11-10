@@ -18,6 +18,10 @@ class PasteService {
       { new: true },
     );
   }
+  async isPasteExpired(id: string): Promise<boolean> {
+    const paste = await pasteModel.findOne({ id });
+    return paste ? new Date() > paste.expiresAt : false;
+  }
 }
 
 export default PasteService;

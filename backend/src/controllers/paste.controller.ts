@@ -46,7 +46,14 @@ class PasteController {
       } catch (error: any) {
         if (error?.errorResponse?.code === 11000) {
           if (validatedBody.customId) {
-            return res.status(409).json({ error: "Custom ID already exists" });
+            const isExpired = await this.pasteService.isPasteExpired(pasteId);
+            if (isExpired) {
+              await this.pasteService.deletePaste(pasteId);
+              const result = await createAndSavePaste(pasteId);
+              this.logger.info(`Replaced expired paste with id: ${pasteId}`);
+              return res.json(result);
+            }
+            return res.status(409).json({ error: "ID already in use" });
           }
           pasteId =
             validatedBody.idType === "system" ? uniqueIdGenerator() : customId;
