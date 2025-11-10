@@ -38,33 +38,47 @@ const HomePage = () => {
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [customId, setCustomId] = useState("");
+  const [dialogError, setDialogError] = useState("");
   const navigate = useNavigate();
   const apiHelpers = useApiHelpers();
   const { t } = useTranslation();
 
   const handleSubmit = async (selectedIdType: IdType, providedId?: string) => {
-    const data = await apiHelpers.submitPaste(
-      userInputRef,
-      expiresTime,
-      selectedIdType,
-      providedId,
-    );
-    toast.success(`Snippet pasted with ${selectedIdType} ID!`, {
-      position: "bottom-right",
-    });
-    navigate("/" + data.id);
-    saveToLocal(data);
+    try {
+      const data = await apiHelpers.submitPaste(
+        userInputRef,
+        expiresTime,
+        selectedIdType,
+        providedId,
+      );
+      toast.success(`Snippet pasted with ${selectedIdType} ID!`, {
+        position: "bottom-right",
+      });
+      navigate("/" + data.id);
+      saveToLocal(data);
+      return true;
+    } catch (error) {
+      return (
+        (error as unknown).response?.data?.error || "Failed to create snippet"
+      );
+    }
   };
 
   const handleDynamicIdClick = () => {
     setIsDialogOpen(true);
+    setDialogError("");
   };
 
-  const handleDialogSubmit = () => {
+  const handleDialogSubmit = async () => {
     if (customId.trim()) {
-      handleSubmit("dynamic", customId.trim());
-      setIsDialogOpen(false);
-      setCustomId("");
+      setDialogError("");
+      const result = await handleSubmit("dynamic", customId.trim());
+      if (result === true) {
+        setIsDialogOpen(false);
+        setCustomId("");
+      } else {
+        setDialogError(result);
+      }
     }
   };
 
@@ -163,6 +177,9 @@ const HomePage = () => {
               onChange={(e) => setCustomId(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleDialogSubmit()}
             />
+            {dialogError && (
+              <p className="text-sm text-red-500 mt-2">{dialogError}</p>
+            )}
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
