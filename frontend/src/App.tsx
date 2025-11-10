@@ -6,7 +6,7 @@ import AboutPage from "./pages/about";
 import { toast } from "sonner";
 import { useEffect, useRef } from "react";
 import { useApiHelpers } from "./lib/api";
-import Header from "@/components/ui/header";
+import Header from "@/components/header";
 
 const App = () => {
   const apiHelpers = useApiHelpers();

@@ -1,5 +1,5 @@
 import Footer from "@/components/ui/footer";
-import Header from "@/components/ui/header";
+import Header from "@/components/header";
 import { Mail, Code, Users, Heart } from "lucide-react";
 
 const AboutPage = () => {
