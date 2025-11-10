@@ -68,7 +68,6 @@ const Header = ({ className }: HeaderProps) => {
         )}
       </div>
       <div className="flex gap-2">
-        <ThemeTogglePositionsDemo />
         <Link to={"/about"}>
           <Button variant={"ghost"}>{t("header.about")}</Button>
         </Link>
@@ -97,6 +96,7 @@ const Header = ({ className }: HeaderProps) => {
             <Button variant={"outline"}>{t("header.newnippet")}</Button>
           </Link>
         )}
+        <ThemeTogglePositionsDemo />
       </div>
     </header>
   );
